@@ -18,26 +18,41 @@ function Cell(x, y) {
   this.y = y;
 
   /**
-   * f - the vertical coordonate of the cell
+   * f - the total of Cell.g and Cell.h
    * @type {number}
    */
   this.f = Infinity;
   /**
-   * g - the vertical coordonate of the cell
+   * g - the distance from start to this cell
    * @type {number}
    */
   this.g = Infinity;
   /**
-   * h - the vertical coordonate of the cell
+   * h - the estimated cost of the shortest path from this cell to end
    * @type {number}
    */
   this.h = Infinity;
 
+  /**
+   * neighbours - the cells adiacent to this cell
+   * @type {Array<Cell>}
+   */
   this.neighbours = [];
+  /**
+   * cameFrom - the cell from which this cell arrived
+   * @type {Cell}
+   */
   this.cameFrom = undefined;
-
+  /**
+   * obstacle - true if the cell is an obstacle
+   * @type {boolean}
+   */
   this.obstacle = false;
 
+  /**
+   * Displays the cell in the grid.
+   * @param {} col The RGB color of the cell
+   */
   this.show = function (col) {
     if (this.obstacle) {
       stroke(0);

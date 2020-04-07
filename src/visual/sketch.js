@@ -23,23 +23,9 @@ var algorithmIndex;
 var selectedHeuristic;
 var diagonals = true;
 
-function createGrid() {
-  grid = [];
-  //Creating the 2D Array
-  for (var i = 0; i < cols; i++) {
-    grid[i] = new Array(rows);
-  }
-
-  for (var i = 0; i < cols; i++) {
-    for (var j = 0; j < rows; j++) {
-      grid[i][j] = new Cell(i, j);
-    }
-  }
-
-  start = grid[START_COL][START_ROW];
-  end = grid[END_COL][END_ROW];
-}
-
+/**
+ * Draw the start cell
+ **/
 function drawStart() {
   if (draggingStart) {
     start.g = Infinity;
@@ -82,7 +68,9 @@ function drawStart() {
     ellipse(start.x * w + w / 2 + 0.5, start.y * h + h / 2 + 0.5, w - 1, h - 1);
   }
 }
-
+/**
+ * Draw the end cell
+ **/
 function drawEnd() {
   if (draggingEnd) {
     var newX = parseInt(mouseX / w);
@@ -149,7 +137,9 @@ function drawEnd() {
     ellipse(end.x * w + w / 2 + 0.5, end.y * h + h / 2 + 0.5, w / 2.5, h / 2.5);
   }
 }
-
+/**
+ * Draw the path
+ **/
 function drawPath() {
   // for (var i = 0; i < path.length; i++) {
   //   path[i].show(color(255, 255, 0));
@@ -164,7 +154,9 @@ function drawPath() {
   }
   endShape();
 }
-
+/**
+ * Draw the grid
+ **/
 function drawGrid() {
   for (var i = 0; i < cols; i++) {
     for (var j = 0; j < rows; j++) {
@@ -179,14 +171,18 @@ function drawGrid() {
     }
   }
 }
-
+/**
+ * Setup function for p5js
+ **/
 function setup() {
   createCanvas(1400, 560).id("grid").parent("sketch-holder");
   w = (width - 1) / cols;
   h = (height - 1) / rows;
   createGrid();
 }
-
+/**
+ * Draw function for p5js
+ **/
 function draw() {
   background(255);
   if (running) {

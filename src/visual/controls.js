@@ -24,24 +24,9 @@ var helpContent = [];
 var $stats = $("#stats");
 var steps;
 
-function drawStats(algorithm, heuristic, pathLength, steps) {
-  $stats.html(
-    `<b>Stats</b> | 
-  <b>algorithm</b>: <u>${algorithm}</u> | 
-  <b>heuristic</b>: <u>${heuristic}</u> | 
-  <b>path length</b>: <u>${pathLength.toFixed(4)}</u> | 
-  <b>steps</b>: <u>${steps}</u>`
-  );
-}
-
-function computeStats() {
-  var algorithm = algorithmList[algorithmIndex].name;
-  var heuristic = selectedHeuristic.name;
-  var pathLength = calcPathLength(path);
-
-  drawStats(algorithm, heuristic, pathLength, steps);
-}
-
+/**
+ * The list of available algorithms
+ */
 var algorithmList = [
   {
     name: "A*",
@@ -100,6 +85,26 @@ var algorithmList = [
   },
 ];
 
+/**
+ * Display the stats
+ * @param algorithm The name of the algorithm used
+ * @param heuristic The name of the heuristic used
+ * @param pathLength The length of the path found
+ * @param steps The number of steps in which the path was found
+ */
+function drawStats(algorithm, heuristic, pathLength, steps) {
+  $stats.html(
+    `<b>Stats</b> | 
+  <b>algorithm</b>: <u>${algorithm}</u> | 
+  <b>heuristic</b>: <u>${heuristic}</u> | 
+  <b>path length</b>: <u>${pathLength.toFixed(4)}</u> | 
+  <b>steps</b>: <u>${steps}</u>`
+  );
+}
+
+/**
+ * Toggle the disabled status of controls.
+ */
 function toggleControls() {
   $("#selectAlgorithmDrop").prop("disabled", function (i, v) {
     return !v;
@@ -164,7 +169,9 @@ $selectHeuristics.on("click", "li", function () {
     selectedHeuristic = heuristics.chebyshev;
   }
 });
-
+/**
+ * Start visualizing the algorithm.
+ */
 function startVisualize() {
   if (selectedHeuristic == undefined && algorithmIndex == undefined) {
     showAlert("Please select an Algorithm and Heuristic function");
@@ -181,6 +188,11 @@ function startVisualize() {
   }
 }
 
+/**
+ * Jiggle the grid
+ * Called when algorithm fails
+ * @param lim limit of jiggles
+ */
 function jiggle(lim, i) {
   if (i >= lim) {
     $("#grid").css("top", 0).css("left", 0);
@@ -196,6 +208,9 @@ function jiggle(lim, i) {
   }, 5);
 }
 
+/**
+ * Alert when the search fails
+ */
 function failSearch() {
   jiggle(15);
   showAlert("Failed to find a path");
@@ -227,6 +242,11 @@ $eraser.click(function () {
 $clearCanvas.click(function () {
   clearObstacles(grid);
 });
+
+/**
+ * Display an alert
+ * @param {string} text - the text to be displayed
+ */
 function showAlert(text) {
   $(".alert").text(text);
   $(".alert").append("<div class='alert-close'>✖</div>");
@@ -237,6 +257,10 @@ $(".alert").click(function () {
   $(".alert").css("visibility", "hidden");
 });
 
+/**
+ * Clear all the obstacles on the grid
+ * @param grid - the grid
+ */
 function clearObstacles(grid) {
   if (!running) {
     for (var i = 0; i < grid.length; i++) {
@@ -246,6 +270,12 @@ function clearObstacles(grid) {
     }
   }
 }
+
+/**
+ * Generate random obstacles on the grid
+ * @param grid - the grid
+ * @param {number} percentage - the amount of obstacles on grid (from 0 to 1)
+ */
 function randomObstacles(grid, percentage) {
   clearObstacles(grid);
   if (!running) {
@@ -261,6 +291,10 @@ function randomObstacles(grid, percentage) {
   }
 }
 
+/**
+ * Mouse event function
+ * Used for interacting with elements on grid
+ */
 function mouseDragged() {
   if (!running) {
     var x = parseInt(mouseX / w);
@@ -306,6 +340,10 @@ function mouseDragged() {
 //   end.obstacle = false;
 // }
 
+/**
+ * Mouse event function
+ * Used for interacting with elements on grid
+ */
 function mousePressed() {
   if (!running) {
     cursorX = parseInt(mouseX / w);
@@ -320,6 +358,10 @@ function mousePressed() {
   }
 }
 
+/**
+ * Mouse event function
+ * Used for interacting with elements on grid
+ */
 function mouseReleased() {
   if (!running) {
     // Quit dragging
@@ -328,6 +370,7 @@ function mouseReleased() {
   }
 }
 
+//The content for the help modal window
 helpContent[0] = `<h1>Pathfinding Visualization</h1>
 <h2>Controls:</h2>
 <p>
@@ -364,6 +407,7 @@ helpContent[2] = `<h1>Pathfinding Visualization</h1>
 <p>You can visualize the new computed path by dragging the <b>Start</b> and <b>End</b> cells:</p>
 <center><img width = "200px" src="images/moving_start.gif"></center>`;
 
+//The current page for the help modal window
 var page = 0;
 
 $("#helpContent").html(helpContent[page]);
@@ -377,7 +421,11 @@ $("#previous").click(function () {
 
 $("#next").click(function () {
   page++;
+  if (page < helpContent.length) {
+    $("#helpContent").html(helpContent[page]);
+  } else {
+    $("#modal__state").prop("checked", false);
+  }
   page = min(page, helpContent.length - 1);
-  console.log(page);
   $("#helpContent").html(helpContent[page]);
 });

@@ -1,7 +1,27 @@
 /**
+ * Creating the 2D Array
+ **/
+function createGrid() {
+  grid = [];
+
+  for (var i = 0; i < cols; i++) {
+    grid[i] = new Array(rows);
+  }
+
+  for (var i = 0; i < cols; i++) {
+    for (var j = 0; j < rows; j++) {
+      grid[i][j] = new Cell(i, j);
+    }
+  }
+
+  start = grid[START_COL][START_ROW];
+  end = grid[END_COL][END_ROW];
+}
+
+/**
  * Reconstruct the path from the end cell according to cameFrom value.
  *  @param {Cell} cell end cell
- *  @return {} the path
+ *  @return {Array<{Cell}>} the path
  */
 function backtrace(cell) {
   var path = [cell];
@@ -16,7 +36,7 @@ function backtrace(cell) {
  * Reconstruct the path from both start and end cells
  *  @param {Cell} nodeA
  *  @param {Cell} nodeB
- *  @return {} the path
+ *  @return {Array<{Cell}>} the path
  */
 function biBacktrace(nodeA, nodeB) {
   var pathA = backtrace(nodeA),
@@ -30,8 +50,8 @@ function biBacktrace(nodeA, nodeB) {
 
 /**
  * Removes an element from array
- *  @param {Array<>} arr The array
- *  @param {} elt The element to be removed
+ *  @param {Array<Cell>} arr The array
+ *  @param {Cell} elt The element to be removed
  */
 function removeFromArray(arr, elt) {
   for (var i = arr.length - 1; i >= 0; i--) {
@@ -89,4 +109,14 @@ function calcPathLength(path) {
     sum += Math.sqrt(dx * dx + dy * dy);
   }
   return sum;
+}
+/**
+ * Calculate the stats required and call the drawStats() function
+ */
+function computeStats() {
+  var algorithm = algorithmList[algorithmIndex].name;
+  var heuristic = selectedHeuristic.name;
+  var pathLength = calcPathLength(path);
+
+  drawStats(algorithm, heuristic, pathLength, steps);
 }
