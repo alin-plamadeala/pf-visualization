@@ -1,0 +1,129 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.dom.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div class="controlBar">
+      <div class="left-side">
+        <button class="btn" id="clearCanvas">
+          Clear Obstacles
+        </button>
+        <button class="btn" id="pencil">
+          Pencil
+        </button>
+        <button class="btn" id="eraser">
+          Eraser
+        </button>
+        <div class="dropdown">
+          <button class="dropbtn" id="selectObstaclesDrop">
+            Obstacles
+          </button>
+          <div id="selectObstacles" class="dropdown-content">
+            <li value="0">0%</li>
+            <li value="10">10%</li>
+            <li value="20">20%</li>
+            <li value="30">30%</li>
+            <li value="40">40%</li>
+            <li value="50">50%</li>
+          </div>
+        </div>
+      </div>
+
+      <div class="f-side">
+        <button class="btn start" id="controlButton">
+          Start Pathfinder
+        </button>
+      </div>
+
+      <div class="right-side">
+        <div class="dropdown">
+          <button class="dropbtn" id="selectAlgorithmDrop">
+            Algorithm
+          </button>
+          <div id="selectAlgorithm" class="dropdown-content">
+            <li value="0">A*</li>
+            <li value="1">Dijkstra</li>
+            <li value="2">BestFirst</li>
+            <li value="3">BreadthFirst</li>
+            <li value="4">Bi-directional A*</li>
+            <li value="5">Bi-directional Dijkstra</li>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn" id="selectHeuristicsDrop">
+            Heuristic
+          </button>
+          <div id="selectHeuristics" class="dropdown-content">
+            <li value="euclidean">Euclidean</li>
+            <li value="manhattan">Manhattan</li>
+            <li value="octile">Octile</li>
+            <li value="chebyshev">Chebyshev</li>
+          </div>
+        </div>
+        <button class="btn" id="diagonals">
+          Diagonals
+        </button>
+        <label class="btn" for="modal__state" id="helpButton">Help</label>
+        <input
+          type="checkbox"
+          name="modal__state"
+          id="modal__state"
+          class="modal__state"
+          checked
+        />
+        <div class="modal__overlay">
+          <label for="modal__state" class="modal__overlay-close"></label>
+          <div class="modal-wrapper">
+            <div class="modal">
+              <label
+                class="button button--close modal__close"
+                for="modal__state"
+                >✖</label
+              >
+              <div id="helpContent">
+                ###
+              </div>
+              <div id="helpControls">
+                <button class="btn" id="previous" value="0">
+                  Previous Page
+                </button>
+                <button class="btn" id="next" value="1">Next Page</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="alert-holder">
+      <div class="alert">Alert</div>
+    </div>
+
+    <div id="sketch-holder"></div>
+    <div id="stats">
+      <b>Stats</b> | <b>algorithm</b>: <u>undefined</u> | <b>heuristic</b>:
+      <u>undefined</u> | <b>path length</b>: <u>null</u> | <b>operations</b>:
+      <u>null</u>
+    </div>
+
+    <script src="./src/algorithms/a_star.js"></script>
+    <script src="./src/algorithms/bestFirst.js"></script>
+    <script src="./src/algorithms/bi_astar.js"></script>
+    <script src="./src/algorithms/bi_dijkstra.js"></script>
+    <script src="./src/algorithms/dijkstra.js"></script>
+    <script src="./src/algorithms/breadthFirst.js"></script>
+    .
+    <script src="/src/core/cell.js"></script>
+    <script src="/src/core/heuristics.js"></script>
+    <script src="/src/core/util.js"></script>
+
+    <script src="/src/lib/heap.js"></script>
+
+    <script src="/src/visual/dropdown.js"></script>
+    <script src="/src/visual/controls.js"></script>
+    <script src="/src/visual/sketch.js"></script>
+  </body>
+</html>
