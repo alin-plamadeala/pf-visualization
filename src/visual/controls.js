@@ -355,14 +355,14 @@ helpContent[0] = `<h1>Pathfinding Visualization</h1>
 </p>`;
 helpContent[1] = `<h1>Pathfinding Visualization</h1>
 <h2>Legend:</h2>
-<p><img style="vertical-align:middle" width = "40px" src="/images/start.png" title="Starting Cell"><b> - The starting cell.</b></p>
-<p><img style="vertical-align:middle" width = "40px" src="/images/end.png" title="Destination Cell"><b>- The destination cell.</b></p>
-<p><img style="vertical-align:middle" width = "40px" src="/images/visited_nodes.png" title="Visited Cells"><b> - Visited cells.</b></p>
-<p><img style="vertical-align:middle" width = "40px" src="/images/path.png" title="Path"><b> - The path.</b></p>`;
+<p><img style="vertical-align:middle" width = "40px" src="images/start.png" title="Starting Cell"><b> - The starting cell.</b></p>
+<p><img style="vertical-align:middle" width = "40px" src="images/end.png" title="Destination Cell"><b>- The destination cell.</b></p>
+<p><img style="vertical-align:middle" width = "40px" src="images/visited_nodes.png" title="Visited Cells"><b> - Visited cells.</b></p>
+<p><img style="vertical-align:middle" width = "40px" src="images/path.png" title="Path"><b> - The path.</b></p>`;
 helpContent[2] = `<h1>Pathfinding Visualization</h1>
 <h2>More controls:</h2>
 <p>You can visualize the new computed path by dragging the <b>Start</b> and <b>End</b> cells:</p>
-<center><img width = "200px" src="/images/moving_start.gif"></center>`;
+<center><img width = "200px" src="images/moving_start.gif"></center>`;
 
 var page = 0;
 
