@@ -1,6 +1,8 @@
 var openList = []; //the list of nodes used by this algorithm
 initialized = false;
-
+/**
+ * Breadth First  path-finder used by p5js draw() method.
+ */
 function BreadthFirstFinder(grid, start, end) {
   // initialize the variables for the algorithm
   // this runs only the first time a frame is rendered.
@@ -46,6 +48,10 @@ function BreadthFirstFinder(grid, start, end) {
     return;
   }
 }
+
+/**
+ * Breadth First path-finder.
+ */
 function BreadthFirstFinderFast(grid, start, end) {
   // initialize the variables for the algorithm
   // this runs only the first time a frame is rendered.

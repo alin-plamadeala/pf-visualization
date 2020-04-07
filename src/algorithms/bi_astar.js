@@ -1,10 +1,10 @@
-/**
- * Bi-directional A* path-finder.
- */
 var startOpenList, endOpenList;
 const BY_START = 1;
 const BY_END = 2;
 
+/**
+ * Bi-directional A* path-finder used by p5js draw() method.
+ */
 function BiAStarFinder(grid, start, end, heuristic) {
   // initialize the variables for the algorithm
   // this runs only the first time a frame is rendered.
@@ -144,6 +144,10 @@ function BiAStarFinder(grid, start, end, heuristic) {
     return;
   }
 }
+
+/**
+ * Bi-directional A* path-finder.
+ */
 function BiAstarFinderFast(grid, start, end, heuristic) {
   resetGrid();
 

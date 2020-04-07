@@ -1,9 +1,36 @@
+/**
+ * The Cell class representing the elements of which the grid is made
+ * @constructor
+ * @param {number} x the horizontal coordonate of the cell
+ * @param {number} y the vertical coordonate of the cell
+
+ */
 function Cell(x, y) {
+  /**
+   * x - the horizontal coordonate of the cell
+   * @type {number}
+   */
   this.x = x;
+  /**
+   * y - the vertical coordonate of the cell
+   * @type {number}
+   */
   this.y = y;
 
+  /**
+   * f - the vertical coordonate of the cell
+   * @type {number}
+   */
   this.f = Infinity;
+  /**
+   * g - the vertical coordonate of the cell
+   * @type {number}
+   */
   this.g = Infinity;
+  /**
+   * h - the vertical coordonate of the cell
+   * @type {number}
+   */
   this.h = Infinity;
 
   this.neighbours = [];
